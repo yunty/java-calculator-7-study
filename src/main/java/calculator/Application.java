@@ -1,7 +1,14 @@
 package calculator;
 
+import controller.Controller;
+import domain.DelimiterSum;
+import view.InputView;
+import view.OutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Controller controller = new Controller(new DelimiterSum(), new InputView(), new OutputView());
+
+        controller.calculator();
     }
 }
