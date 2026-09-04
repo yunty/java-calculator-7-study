@@ -1,25 +1,29 @@
 package controller;
 
+import domain.CustomInput;
 import domain.DelimiterSum;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    DelimiterSum delimiterSum;
-    InputView inputView;
-    OutputView outputView;
+    private DelimiterSum delimiterSum;
+    private InputView inputView;
+    private OutputView outputView;
+    private CustomInput customInput;
 
-    public Controller(DelimiterSum delimiterSum, InputView inputView, OutputView outputView) {
+    public Controller(DelimiterSum delimiterSum, InputView inputView, OutputView outputView, CustomInput customInput) {
         this.delimiterSum = delimiterSum;
         this.inputView = inputView;
         this.outputView = outputView;
+        this.customInput = customInput;
     }
+
     public void calculator(){
         outputView.printStart();
         String userInput = inputView.getUserNumber();
-        delimiterSum.set(userInput);
-        delimiterSum.validateInput();
-        int result = delimiterSum.sum();
+        customInput.set(userInput);
+        customInput.validateInput();
+        int result = delimiterSum.sum(customInput);
         outputView.printResult(result);
     }
 }
