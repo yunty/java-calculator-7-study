@@ -1,6 +1,6 @@
 package controller;
 
-import domain.CustomInput;
+import domain.InputParse;
 import domain.DelimiterSum;
 import view.InputView;
 import view.OutputView;
@@ -19,8 +19,8 @@ public class Controller {
     public void calculator(){
         outputView.printStart();
         String userInput = inputView.getUserNumber();
-        CustomInput customInput = CustomInput.from(userInput);
-        int result = delimiterSum.sum(customInput);
+        InputParse inputParse = InputParse.from(userInput);
+        int result = delimiterSum.sum(inputParse);
         outputView.printResult(result);
     }
 }

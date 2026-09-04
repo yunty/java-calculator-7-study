@@ -1,7 +1,6 @@
 package calculator;
 
 import controller.Controller;
-import domain.CustomInput;
 import domain.DelimiterSum;
 import view.InputView;
 import view.OutputView;
