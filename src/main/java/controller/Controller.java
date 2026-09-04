@@ -9,20 +9,17 @@ public class Controller {
     private DelimiterSum delimiterSum;
     private InputView inputView;
     private OutputView outputView;
-    private CustomInput customInput;
 
-    public Controller(DelimiterSum delimiterSum, InputView inputView, OutputView outputView, CustomInput customInput) {
+    public Controller(DelimiterSum delimiterSum, InputView inputView, OutputView outputView) {
         this.delimiterSum = delimiterSum;
         this.inputView = inputView;
         this.outputView = outputView;
-        this.customInput = customInput;
     }
 
     public void calculator(){
         outputView.printStart();
         String userInput = inputView.getUserNumber();
-        customInput.set(userInput);
-        customInput.validateInput();
+        CustomInput customInput = CustomInput.from(userInput);
         int result = delimiterSum.sum(customInput);
         outputView.printResult(result);
     }
