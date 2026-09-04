@@ -3,17 +3,17 @@ package domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CustomInput { // 구분자와 숫자를 구분한다.
+public class InputParse { // 구분자와 숫자를 구분한다.
     private String delimiter;
     private String userInput;
 
-    private CustomInput(String rawInput) {
+    private InputParse(String rawInput) {
         set(rawInput);
         validateInput();
     }
 
-    public static CustomInput from(String rawInput){
-        return new CustomInput(rawInput);
+    public static InputParse from(String rawInput){
+        return new InputParse(rawInput);
     }
     public String getDelimiter() {
         return delimiter;
