@@ -24,6 +24,39 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 기본_구분자_사용() {
+        assertSimpleTest(() -> {
+            run("1,2:3");
+            assertThat(output().lines()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 빈_입력의_결과는_영이다() {
+        assertSimpleTest(() -> {
+            // 빈 스트림 대신 엔터를 입력하여 빈 줄을 전달한다.
+            run("\n");
+            assertThat(output().lines()).contains("결과 : 0");
+        });
+    }
+
+    @Test
+    void 커스텀과_기본_구분자_혼합() {
+        assertSimpleTest(() -> {
+            run("//;\\n1;2,3:4");
+            assertThat(output().lines()).contains("결과 : 10");
+        });
+    }
+
+    @Test
+    void 합계_범위_초과() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("2147483647,1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

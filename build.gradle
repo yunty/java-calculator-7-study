@@ -20,6 +20,11 @@ dependencies {
     implementation 'com.github.woowacourse-projects:mission-utils:1.2.0'
 }
 
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
 test {
     useJUnitPlatform()
+    systemProperty 'file.encoding', 'UTF-8'
 }

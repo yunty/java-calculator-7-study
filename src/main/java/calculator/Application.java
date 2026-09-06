@@ -1,14 +1,17 @@
 package calculator;
 
 import controller.Controller;
-import domain.DelimiterSum;
+import domain.Calculator;
+import domain.InputParser;
 import view.InputView;
 import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        Controller controller = new Controller(new DelimiterSum(), new InputView(), new OutputView());
+        Controller controller = new Controller(
+                new InputParser(), new Calculator(), new InputView(), new OutputView()
+        );
 
-        controller.calculator();
+        controller.run();
     }
 }

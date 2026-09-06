@@ -1,26 +1,30 @@
 package controller;
 
-import domain.InputParse;
-import domain.DelimiterSum;
+import domain.InputParser;
+import domain.Calculator;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    private DelimiterSum delimiterSum;
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputParser inputParser;
+    private final Calculator calculator;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public Controller(DelimiterSum delimiterSum, InputView inputView, OutputView outputView) {
-        this.delimiterSum = delimiterSum;
+    public Controller(InputParser inputParser, Calculator calculator,
+                      InputView inputView, OutputView outputView) {
+        this.inputParser = inputParser;
+        this.calculator = calculator;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void calculator(){
+    public void run() {
         outputView.printStart();
-        String userInput = inputView.getUserNumber();
-        InputParse inputParse = InputParse.from(userInput);
-        int result = delimiterSum.sum(inputParse);
+        String rawInput = inputView.readInput();
+        List<Integer> numbers = inputParser.parse(rawInput);
+        int result = calculator.sum(numbers);
         outputView.printResult(result);
     }
 }
